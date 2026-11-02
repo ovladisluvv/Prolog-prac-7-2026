@@ -13,5 +13,5 @@ path(A, B, [A|T]) :- path1(A, B, [A], T).
 
 % path1/4: (i, i, i, o) - недетерминированный
 % (i, i, i, i) - детерминированный
-path1(B, B, _, []).
+path1(B, B, _, []) :- !.
 path1(A, B, Path, [Next|T]) :- (edge(A, Next, _); edge(Next, A, _), not(edge(A, Next, _))), not(member(Next, Path)), path1(Next, B,[Next|Path], T).
