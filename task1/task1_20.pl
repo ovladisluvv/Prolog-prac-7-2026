@@ -8,7 +8,7 @@ edge(f, e, 7).
 edge(b, e, 10).
 
 % is_connected/0: () - детерминированный
-is_connected :- edge(A,_,_), not((edge(B,_,_), not(path(A,B,_)))).
+is_connected :- edge(A, _, _), not((edge(B, _, _), not(path(A, B, _)))).
 
 % path/3: (i, i, o) - недетерминированный
 % (i, i, i) - детерминированный
