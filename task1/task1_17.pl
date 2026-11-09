@@ -9,7 +9,11 @@ edge(b, e, 10).
 
 % min_path/3: (i, i, o) - недетерминированный
 % (i, i, i) - детерминированный
-min_path(A, B, Res_path) :- findall([C, Path], cost_path(A, B, [A], Path, C), Paths), member([C, Res_path], Paths), not((member([C1, _], Paths), C1 < C)).
+min_path(A, B, Res_path) :- findall([C, Path], cost_path(A, B, [A], Path, C), Paths), min_cost(Paths, C_min), member([C_min, Res_path], Paths).
+
+% min_cost/2: (i, o), (i, i) - детерминированные
+min_cost([[C, _]], C).
+min_cost([[C1, _]|T], C_min) :- min_cost(T, C2), C_min is min(C1, C2).
 
 % cost_path/5: (i, i, i, o, o) - недетерминированный
 cost_path(B, B, _, [B], 0) :- !.
